@@ -62,6 +62,19 @@ Window {
                     }
                 }
 
+                RowLayout {
+
+                    Button {
+                        id: btnRemoveLastResistor
+                        text: qsTr("Remove Last")
+                    }
+
+                    Button {
+                        id: btnClearResistor
+                        text: qsTr("Clear")
+                    }
+                }
+
                 Label {
                     id: lblData
                     text: "Data label"
