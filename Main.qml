@@ -10,6 +10,9 @@ Window {
     visible: true
     title: qsTr("Resonant Cacl")
 
+    minimumWidth: 400
+    minimumHeight: 400
+
     TabBar {
         id: bar
         width: parent.width
@@ -32,15 +35,19 @@ Window {
 
         Item {
             id: resistorTab
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
             ColumnLayout {
-                anchors.fill: parent
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+
+                spacing: 20
 
                 RadioButton {
                     id: btnParallel
                     text: qsTr("Parallel")
                     checked: true
-
                 }
 
                 RadioButton {
@@ -49,6 +56,7 @@ Window {
                 }
 
                 RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
                     TextField {
                         id: input
@@ -63,6 +71,7 @@ Window {
                 }
 
                 RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
                     Button {
                         id: btnRemoveLastResistor
@@ -78,16 +87,22 @@ Window {
                 Label {
                     id: lblData
                     text: "Data label"
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
                 Label {
                     id: lblResult
                     text: "Result label"
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
                 Button {
                     id: btnResCalc
                     text: qsTr("Calculate")
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
             }
         }
@@ -95,7 +110,10 @@ Window {
             id: crTab
 
             ColumnLayout {
-                anchors.fill: parent
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+
+                spacing: 20
 
                 Label {
                     id: lblCrResistor
@@ -132,12 +150,16 @@ Window {
 
                 Label {
                     id: lblCrResult
-                    text: "Result Impedance:"
+                    text: "Result Impedance: "
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
                 Button {
                     id: btnCrCalc
                     text: qsTr("Calculate")
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
             }
         }
@@ -145,7 +167,10 @@ Window {
             id: lrTab
 
             ColumnLayout {
-                anchors.fill: parent
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+
+                spacing: 20
 
                 Label {
                     id: lblIrResistor
@@ -183,11 +208,15 @@ Window {
                 Label {
                     id: lblIrResult
                     text: "Result Impedance:"
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
                 Button {
                     id: btnLrCalc
                     text: qsTr("Calculate")
+
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
             }
         }
