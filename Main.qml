@@ -103,6 +103,7 @@ Window {
                 TextField {
                     id: inputCrCapasitor
                     placeholderText: qsTr("0,000001");
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*F$/}
                 }
 
                 Label {
