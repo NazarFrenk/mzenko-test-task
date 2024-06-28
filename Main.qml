@@ -156,6 +156,8 @@ Window {
                 Label {
                     id: lblData
                     text: "Data label"
+                    font.pixelSize: 15
+                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -163,6 +165,8 @@ Window {
                 Label {
                     id: lblResult
                     text: "Result label"
+                    font.pixelSize: 15
+                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -206,6 +210,8 @@ Window {
                 Label {
                     id: lblCrResistor
                     text: "Resistor (Ω):"
+                    font.pixelSize: 15
+                    font.family: "Arial"
                 }
 
                 TextField {
@@ -219,6 +225,8 @@ Window {
                 Label {
                     id: lblCrCapasitor
                     text: "Capacitor (F):"
+                    font.pixelSize: 15
+                    font.family: "Arial"
                 }
 
                 TextField {
@@ -232,6 +240,8 @@ Window {
                 Label {
                     id: lblCrFrequency
                     text: "Frequency (Hz):"
+                    font.pixelSize: 15
+                    font.family: "Arial"
                 }
 
                 TextField {
@@ -245,6 +255,8 @@ Window {
                 Label {
                     id: lblCrResult
                     text: "Result Impedance: "
+                    font.pixelSize: 15
+                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -288,6 +300,8 @@ Window {
                 Label {
                     id: lblIrResistor
                     text: "Resistor (Ω):"
+                    font.pixelSize: 15
+                    font.family: "Arial"
                 }
 
                 TextField {
@@ -301,6 +315,8 @@ Window {
                 Label {
                     id: lblIrInductor
                     text: "Inductor (H):"
+                    font.pixelSize: 15
+                    font.family: "Arial"
                 }
 
                 TextField {
@@ -314,6 +330,8 @@ Window {
                 Label {
                     id: lblIrFrequency
                     text: "Frequency (Hz):"
+                    font.pixelSize: 15
+                    font.family: "Arial"
                 }
 
                 TextField {
@@ -327,6 +345,8 @@ Window {
                 Label {
                     id: lblIrResult
                     text: "Result Impedance:"
+                    font.pixelSize: 15
+                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
