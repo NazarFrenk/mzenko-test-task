@@ -51,11 +51,17 @@ Window {
                 RadioButton {
                     id: btnParallel
                     text: qsTr("Parallel")
+                    font.pixelSize: 15
+                    font.family: "Arial"
+                    font.bold: btnParallel.checked
                     checked: true
                 }
 
                 RadioButton {
                     id: btnSeries
+                    font.pixelSize: 15
+                    font.family: "Arial"
+                    font.bold: btnSeries.checked
                     text: qsTr("Series")
                 }
 
