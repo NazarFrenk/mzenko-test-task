@@ -52,7 +52,8 @@ Window {
 
                     TextField {
                         id: input
-
+                        placeholderText: qsTr("100");
+                        validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+$/}
                     }
 
                     Button {
@@ -91,6 +92,7 @@ Window {
                 TextField {
                     id: inputCrResitor
                     placeholderText: qsTr("100");
+                    validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+$/}
                 }
 
                 Label {
@@ -138,6 +140,7 @@ Window {
                 TextField {
                     id: inputIrResitor
                     placeholderText: qsTr("100");
+                    validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+$/}
                 }
 
                 Label {
