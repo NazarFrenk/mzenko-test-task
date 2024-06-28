@@ -114,6 +114,7 @@ Window {
                 TextField {
                     id: inputCrFrequency
                     placeholderText: qsTr("50");
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*Hz$/}
                 }
 
                 Label {
@@ -163,6 +164,7 @@ Window {
                 TextField {
                     id: inputIrFrequency
                     placeholderText: qsTr("50");
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*Hz$/}
                 }
 
                 Label {
