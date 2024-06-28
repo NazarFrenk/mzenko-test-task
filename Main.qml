@@ -130,6 +130,41 @@ Window {
             ColumnLayout {
                 anchors.fill: parent
 
+                Label {
+                    id: lblIrResistor
+                    text: "Resistor (Ω):"
+                }
+
+                TextField {
+                    id: inputIrResitor
+                    placeholderText: qsTr("100");
+                }
+
+                Label {
+                    id: lblIrInductor
+                    text: "Inductor (H):"
+                }
+
+                TextField {
+                    id: inputIrInductor
+                    placeholderText: qsTr("0,1");
+                }
+
+                Label {
+                    id: lblIrFrequency
+                    text: "Frequency (Hz):"
+                }
+
+                TextField {
+                    id: inputIrFrequency
+                    placeholderText: qsTr("50");
+                }
+
+                Label {
+                    id: lblIrResult
+                    text: "Result Impedance:"
+                }
+
                 Button {
                     id: btnLrCalc
                     text: qsTr("Calculate")
