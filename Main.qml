@@ -83,6 +83,41 @@ Window {
             ColumnLayout {
                 anchors.fill: parent
 
+                Label {
+                    id: lblCrResistor
+                    text: "Resistor (Ω):"
+                }
+
+                TextField {
+                    id: inputCrResitor
+                    placeholderText: qsTr("100");
+                }
+
+                Label {
+                    id: lblCrCapasitor
+                    text: "Capacitor (F):"
+                }
+
+                TextField {
+                    id: inputCrCapasitor
+                    placeholderText: qsTr("0,000001");
+                }
+
+                Label {
+                    id: lblCrFrequency
+                    text: "Frequency (Hz):"
+                }
+
+                TextField {
+                    id: inputCrFrequency
+                    placeholderText: qsTr("50");
+                }
+
+                Label {
+                    id: lblCrResult
+                    text: "Result Impedance:"
+                }
+
                 Button {
                     id: btnCrCalc
                     text: qsTr("Calculate")
