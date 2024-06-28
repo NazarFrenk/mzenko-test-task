@@ -152,6 +152,7 @@ Window {
                 TextField {
                     id: inputIrInductor
                     placeholderText: qsTr("0,1");
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*H$/}
                 }
 
                 Label {
