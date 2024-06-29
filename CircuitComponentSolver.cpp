@@ -11,6 +11,23 @@ CircuitComponentSolver::~CircuitComponentSolver()
     delete m_resistors;
 }
 
+void CircuitComponentSolver::removeLastResistorValue()
+{
+    if (!m_resistors->empty())
+    {
+        m_resistors->pop_back();
+    }
+
+    // TODO - update result label
+}
+
+void CircuitComponentSolver::clearResistorsData()
+{
+    m_resistors->clear();
+
+    // TODO - update result label
+}
+
 QString CircuitComponentSolver::calculateSeriesResistance()
 {
     if (m_resistors->empty())

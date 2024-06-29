@@ -11,6 +11,10 @@ public:
     explicit CircuitComponentSolver(QObject *parent = nullptr);
     ~CircuitComponentSolver();
 
+public slots:
+    void removeLastResistorValue();
+    void clearResistorsData();
+
 signals:
 
 private:
