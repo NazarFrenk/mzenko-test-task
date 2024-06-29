@@ -18,18 +18,56 @@ void CircuitComponentSolver::removeLastResistorValue()
         m_resistors->pop_back();
     }
 
-    qDebug() << "removeLastResistorValue::Resistors count" << m_resistors->size();
+    QString dataString = createDataResistorsString();
 
-    // TODO - update result label
+    setDataResistors(dataString);
+
+    qDebug() << "removeLastResistorValue::Resistors count" << m_resistors->size();
 }
 
 void CircuitComponentSolver::clearResistorsData()
 {
     m_resistors->clear();
 
-    qDebug() << "clearResistorsData::Resistors count" << m_resistors->size();
+    QString dataString = createDataResistorsString();
 
-    // TODO - update result label
+    setDataResistors(dataString);
+
+    qDebug() << "clearResistorsData::Resistors count" << m_resistors->size();
+}
+
+void CircuitComponentSolver::calculateResistance(int type)
+{
+    QString result = "Result: ";
+
+    if (type == 0)
+    {
+        result += calculateSeriesResistance();
+    }
+    else
+    {
+        result += calculateParallelResistance();
+    }
+
+    setResultResistors(result);
+}
+
+QString CircuitComponentSolver::createDataResistorsString()
+{
+    if (m_resistors->empty())
+    {
+        return "Data: no data";
+    }
+
+    QString dataStr = "Data: ";
+
+    for (float value: *m_resistors) {
+        dataStr += QString("%1, ").arg(value, 0, 'f', 5);
+    }
+
+    dataStr.chop(2); // remove last ", "
+
+    return dataStr;
 }
 
 QString CircuitComponentSolver::calculateSeriesResistance()
@@ -78,4 +116,49 @@ QString CircuitComponentSolver::calculateLRImpedance()
     float imaginary = 2 * M_PI * m_frequency * m_inductor;
 
     return QString("%1 + j%2 Ω").arg(m_resistor, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
+}
+
+QString CircuitComponentSolver::resistorValue() const
+{
+    return m_resistorValue;
+}
+
+QString CircuitComponentSolver::data() const
+{
+    return m_dataResistors;
+}
+
+void CircuitComponentSolver::setDataResistors(const QString &newDataResistors)
+{
+    if (m_dataResistors == newDataResistors)
+        return;
+    m_dataResistors = newDataResistors;
+    emit dataResistorsChanged();
+}
+
+QString CircuitComponentSolver::result() const
+{
+    return m_resultResistors;
+}
+
+void CircuitComponentSolver::setResistorValue(const QString &newResistorValue)
+{
+    float value = newResistorValue.toFloat();
+
+    if (value > 0)
+    {
+        m_resistors->push_back(value);
+
+        QString dataString = createDataResistorsString();
+
+        setDataResistors(dataString);
+    }
+}
+
+void CircuitComponentSolver::setResultResistors(const QString &newResultResistors)
+{
+    if (m_resultResistors == newResultResistors)
+        return;
+    m_resultResistors = newResultResistors;
+    emit resultResistorsChanged();
 }

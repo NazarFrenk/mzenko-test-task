@@ -74,7 +74,7 @@ Window {
                         placeholderText: qsTr("100")
                         font.pixelSize: 15
                         font.family: "Arial"
-                        validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+$/}
+                        validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                     }
 
                     Button {
@@ -98,6 +98,11 @@ Window {
                             color: btnOkResistor.down ? btnColorClicked :
                                                         (btnOkResistor.hovered ? btnColorMouseOver : btnColorDefault)
                             radius: 10
+                        }
+
+                        onClicked: {
+                            CircuitComponentSolver.setResistorValue(inputResistor.text)
+                            lblData.text = CircuitComponentSolver.dataResistors
                         }
                     }
                 }
@@ -128,7 +133,10 @@ Window {
                             radius: 10
                         }
 
-                        onClicked: CircuitComponentSolver.removeLastResistorValue();
+                        onClicked: {
+                            CircuitComponentSolver.removeLastResistorValue()
+                            lblData.text = CircuitComponentSolver.dataResistors
+                        }
                     }
 
                     Button {
@@ -154,13 +162,16 @@ Window {
                             radius: 10
                         }
 
-                        onClicked: CircuitComponentSolver.clearResistorsData()
+                        onClicked: {
+                            CircuitComponentSolver.clearResistorsData()
+                            lblData.text = CircuitComponentSolver.dataResistors
+                        }
                     }
                 }
 
                 Label {
                     id: lblData
-                    text: "Data label"
+                    text: "Data: no data"
                     font.pixelSize: 15
                     font.family: "Arial"
 
@@ -169,7 +180,7 @@ Window {
 
                 Label {
                     id: lblResult
-                    text: "Result label"
+                    text: "Result:  no data"
                     font.pixelSize: 15
                     font.family: "Arial"
 
@@ -200,6 +211,11 @@ Window {
                     }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
+                    onClicked: {
+                        CircuitComponentSolver.calculateResistance(btnParallel.checked)
+                        lblResult.text = CircuitComponentSolver.resultResistors;
+                    }
                 }
             }
         }
@@ -224,7 +240,7 @@ Window {
                     placeholderText: qsTr("100")
                     font.pixelSize: 15
                     font.family: "Arial"
-                    validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+$/}
+                    validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                 }
 
                 Label {
@@ -239,7 +255,7 @@ Window {
                     placeholderText: qsTr("0,000001")
                     font.pixelSize: 15
                     font.family: "Arial"
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*F$/}
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
                 }
 
                 Label {
@@ -254,12 +270,12 @@ Window {
                     placeholderText: qsTr("50")
                     font.pixelSize: 15
                     font.family: "Arial"
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*Hz$/}
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
                 }
 
                 Label {
                     id: lblCrResult
-                    text: "Result Impedance: "
+                    text: "Result Impedance: no data"
                     font.pixelSize: 15
                     font.family: "Arial"
 
@@ -314,7 +330,7 @@ Window {
                     placeholderText: qsTr("100")
                     font.pixelSize: 15
                     font.family: "Arial"
-                    validator: RegularExpressionValidator{regularExpression: /^[0-9,/]+$/}
+                    validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                 }
 
                 Label {
@@ -329,7 +345,7 @@ Window {
                     placeholderText: qsTr("0,1")
                     font.pixelSize: 15
                     font.family: "Arial"
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*H$/}
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
                 }
 
                 Label {
@@ -344,12 +360,12 @@ Window {
                     placeholderText: qsTr("50")
                     font.pixelSize: 15
                     font.family: "Arial"
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\,\d+)?\s*Hz$/}
+                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
                 }
 
                 Label {
                     id: lblIrResult
-                    text: "Result Impedance:"
+                    text: "Result Impedance: no data"
                     font.pixelSize: 15
                     font.family: "Arial"
 
