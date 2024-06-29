@@ -111,7 +111,7 @@ QString CircuitComponentSolver::calculateCRImpedance()
     return QString("%1 + j%2 Ω").arg(m_resistor, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
 }
 
-QString CircuitComponentSolver::calculateLRImpedance()
+QString CircuitComponentSolver::calculateIRImpedance()
 {
     float imaginary = 2 * M_PI * m_frequency * m_inductor;
 
@@ -235,4 +235,78 @@ void CircuitComponentSolver::createCrResult()
     }
 
     setResultCr(result);
+}
+
+QString CircuitComponentSolver::resistorIr() const
+{
+    return m_resistorIr;
+}
+
+void CircuitComponentSolver::setResistorIr(const QString &newResistorIr)
+{
+    float value = newResistorIr.toFloat();
+
+    if (value > 0)
+    {
+        m_resistor = value;
+    }
+}
+
+QString CircuitComponentSolver::inductorIr() const
+{
+    return m_inductorIr;
+}
+
+void CircuitComponentSolver::setInductorIr(const QString &newInductorIr)
+{
+    float value = newInductorIr.toFloat();
+
+    if (value > 0)
+    {
+        m_inductor = value;
+    }
+}
+
+QString CircuitComponentSolver::frequencyIr() const
+{
+    return m_frequencyIr;
+}
+
+void CircuitComponentSolver::setFrequencyIr(const QString &newFrequencyIr)
+{
+    float value = newFrequencyIr.toFloat();
+
+    if (value > 0)
+    {
+        m_frequency = value;
+    }
+}
+
+QString CircuitComponentSolver::resultIr() const
+{
+    return m_resultIr;
+}
+
+void CircuitComponentSolver::setResultIr(const QString &newResultIr)
+{
+    if (m_resultIr == newResultIr)
+        return;
+    m_resultIr = newResultIr;
+    emit resultIrChanged();
+}
+
+void CircuitComponentSolver::createIrResult()
+{
+    QString result = "Result Impedance: ";
+
+    if (m_resistor && m_inductor && m_frequency)
+    {
+        result += calculateIRImpedance();
+    }
+    else
+    {
+        result += "no data";
+    }
+
+    setResultIr(result);
 }

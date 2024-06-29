@@ -350,7 +350,7 @@ Window {
 
                 TextField {
                     id: inputIrInductor
-                    placeholderText: qsTr("0,1")
+                    placeholderText: qsTr("0.1")
                     font.pixelSize: 15
                     font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
@@ -401,6 +401,14 @@ Window {
                         color: btnLrCalc.down ? btnColorClicked :
                                                         (btnLrCalc.hovered ? btnColorMouseOver : btnColorDefault)
                         radius: 10
+                    }
+
+                    onClicked: {
+                        CircuitComponentSolver.setResistorIr(inputIrResitor.text)
+                        CircuitComponentSolver.setInductorIr(inputIrInductor.text)
+                        CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
+                        CircuitComponentSolver.createIrResult()
+                        lblIrResult.text = CircuitComponentSolver.resultIr
                     }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

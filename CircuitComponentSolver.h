@@ -17,6 +17,11 @@ class CircuitComponentSolver : public QObject
     Q_PROPERTY(QString frequencyCr READ frequencyCr WRITE setFrequencyCr NOTIFY frequencyCrChanged FINAL)
     Q_PROPERTY(QString resultCr READ resultCr WRITE setResultCr NOTIFY resultCrChanged FINAL)
 
+    Q_PROPERTY(QString resistorIr READ resistorIr WRITE setResistorIr NOTIFY resistorIrChanged FINAL)
+    Q_PROPERTY(QString inductorIr READ inductorIr WRITE setInductorIr NOTIFY inductorIrChanged FINAL)
+    Q_PROPERTY(QString frequencyIr READ frequencyIr WRITE setFrequencyIr NOTIFY frequencyIrChanged FINAL)
+    Q_PROPERTY(QString resultIr READ resultIr WRITE setResultIr NOTIFY resultIrChanged FINAL)
+
 public:
     explicit CircuitComponentSolver(QObject *parent = nullptr);
     ~CircuitComponentSolver();
@@ -35,6 +40,14 @@ public:
 
     QString resultCr() const;
 
+    QString resistorIr() const;
+
+    QString inductorIr() const;
+
+    QString frequencyIr() const;
+
+    QString resultIr() const;
+
 public slots:
     void setResistorValue(const QString &newResistorValue);
     void setDataResistors(const QString &newDataResistors);
@@ -49,6 +62,12 @@ public slots:
     void setResultCr(const QString &newResultCr);
     void createCrResult();
 
+    void setResistorIr(const QString &newResistorIr);
+    void setInductorIr(const QString &newInductorIr);
+    void setFrequencyIr(const QString &newFrequencyIr);
+    void setResultIr(const QString &newResultIr);
+    void createIrResult();
+
 signals:
 
     void resistorValueChanged();
@@ -58,6 +77,10 @@ signals:
     void capasitorCrChanged();
     void frequencyCrChanged();
     void resultCrChanged();
+    void resistorIrChanged();
+    void inductorIrChanged();
+    void frequencyIrChanged();
+    void resultIrChanged();
 
 private:
     std::deque<float> *m_resistors = nullptr; // list of resistors for resistor tab
@@ -70,7 +93,7 @@ private:
     QString calculateSeriesResistance();
     QString calculateParallelResistance();
     QString calculateCRImpedance();
-    QString calculateLRImpedance();
+    QString calculateIRImpedance();
     QString m_resistorValue;
     QString m_dataResistors;
     QString m_resultResistors;
@@ -78,6 +101,10 @@ private:
     QString m_capasitorCr;
     QString m_frequencyCr;
     QString m_resultCr;
+    QString m_resistorIr;
+    QString m_inductorIr;
+    QString m_frequencyIr;
+    QString m_resultIr;
 };
 
 #endif // CIRCUITCOMPONENTSOLVER_H
