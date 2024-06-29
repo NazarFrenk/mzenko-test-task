@@ -127,6 +127,8 @@ Window {
                                                         (btnRemoveLastResistor.hovered ? btnColorMouseOver : btnColorDefault)
                             radius: 10
                         }
+
+                        onClicked: CircuitComponentSolver.removeLastResistorValue();
                     }
 
                     Button {
@@ -151,6 +153,8 @@ Window {
                                                         (btnClearResistor.hovered ? btnColorMouseOver : btnColorDefault)
                             radius: 10
                         }
+
+                        onClicked: CircuitComponentSolver.clearResistorsData()
                     }
                 }
 

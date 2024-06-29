@@ -18,12 +18,16 @@ void CircuitComponentSolver::removeLastResistorValue()
         m_resistors->pop_back();
     }
 
+    qDebug() << "removeLastResistorValue::Resistors count" << m_resistors->size();
+
     // TODO - update result label
 }
 
 void CircuitComponentSolver::clearResistorsData()
 {
     m_resistors->clear();
+
+    qDebug() << "clearResistorsData::Resistors count" << m_resistors->size();
 
     // TODO - update result label
 }

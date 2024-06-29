@@ -2,6 +2,7 @@
 #define CIRCUITCOMPONENTSOLVER_H
 
 #include <QObject>
+#include <QDebug>
 #include <deque>
 
 class CircuitComponentSolver : public QObject
