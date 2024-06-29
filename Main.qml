@@ -252,7 +252,7 @@ Window {
 
                 TextField {
                     id: inputCrCapasitor
-                    placeholderText: qsTr("0,000001")
+                    placeholderText: qsTr("0.000001")
                     font.pixelSize: 15
                     font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
@@ -303,6 +303,14 @@ Window {
                         color: btnCrCalc.down ? btnColorClicked :
                                                         (btnCrCalc.hovered ? btnColorMouseOver : btnColorDefault)
                         radius: 10
+                    }
+
+                    onClicked: {
+                        CircuitComponentSolver.setResistorCr(inputCrResitor.text)
+                        CircuitComponentSolver.setCapasitorCr(inputCrCapasitor.text)
+                        CircuitComponentSolver.setFrequencyCr(inputCrFrequency.text)
+                        CircuitComponentSolver.createCrResult()
+                        lblCrResult.text = CircuitComponentSolver.resultCr
                     }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
