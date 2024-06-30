@@ -45,21 +45,17 @@ Window {
 
                 spacing: 20
 
-                RadioButton {
+                MyStyledRadioButton {
                     id: btnParallel
                     text: qsTr("Parallel")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     font.bold: btnParallel.checked
                     checked: true
                 }
 
-                RadioButton {
+                MyStyledRadioButton {
                     id: btnSeries
-                    font.pixelSize: 15
-                    font.family: "Arial"
-                    font.bold: btnSeries.checked
                     text: qsTr("Series")
+                    font.bold: btnSeries.checked
                 }
 
                 RowLayout {
