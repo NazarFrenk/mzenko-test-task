@@ -108,20 +108,16 @@ Window {
                     }
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblData
                     text: "Data: no data"
-                    font.pixelSize: 15
-                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblResult
                     text: "Result: no data"
-                    font.pixelSize: 15
-                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -148,11 +144,9 @@ Window {
 
                 spacing: 20
 
-                Label {
+                MyStyledLabel {
                     id: lblCrResistor
                     text: "Resistor (Ω):"
-                    font.pixelSize: 15
-                    font.family: "Arial"
                 }
 
                 TextField {
@@ -163,11 +157,9 @@ Window {
                     validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblCrCapasitor
                     text: "Capacitor (F):"
-                    font.pixelSize: 15
-                    font.family: "Arial"
                 }
 
                 TextField {
@@ -178,11 +170,9 @@ Window {
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblCrFrequency
                     text: "Frequency (Hz):"
-                    font.pixelSize: 15
-                    font.family: "Arial"
                 }
 
                 TextField {
@@ -193,11 +183,9 @@ Window {
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblCrResult
                     text: "Result Impedance: no data"
-                    font.pixelSize: 15
-                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -227,11 +215,9 @@ Window {
 
                 spacing: 20
 
-                Label {
+                MyStyledLabel {
                     id: lblIrResistor
                     text: "Resistor (Ω):"
-                    font.pixelSize: 15
-                    font.family: "Arial"
                 }
 
                 TextField {
@@ -242,11 +228,9 @@ Window {
                     validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblIrInductor
                     text: "Inductor (H):"
-                    font.pixelSize: 15
-                    font.family: "Arial"
                 }
 
                 TextField {
@@ -257,11 +241,9 @@ Window {
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblIrFrequency
                     text: "Frequency (Hz):"
-                    font.pixelSize: 15
-                    font.family: "Arial"
                 }
 
                 TextField {
@@ -272,11 +254,9 @@ Window {
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
                 }
 
-                Label {
+                MyStyledLabel {
                     id: lblIrResult
                     text: "Result Impedance: no data"
-                    font.pixelSize: 15
-                    font.family: "Arial"
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
