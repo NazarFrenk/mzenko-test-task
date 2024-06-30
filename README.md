@@ -1,6 +1,6 @@
 # MZenko Test Task
 ## Description
-Create a program on Qt QML + C++.
+Create a program on Qt (6.5.3) QML + C++.
 The main tasks of the program:
 - calculation of resistance of parallel and series connection of resistors
 - calculation of the impedance of a series connection of a capacitor and a resistor
