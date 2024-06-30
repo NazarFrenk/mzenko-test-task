@@ -34,5 +34,10 @@ The `IR Impedance Mode` tab same design as `CR Impedance Mode` tab:
 - text field for enter inductor value (henry, H)
 - text field for enter frequency value (hertz, Hz)
 - by clicking on `Calculate` buttons label `Result: ...` changes its state depending of data (calculated value or `no data` message)
+
+Each text field accepts a dot-separated float value greater than zero and has sample value hints.
+Each label has precision 5 values ​​after the dot.
 ## How to run
+For Windows just need to download and unpack QtQmlResonantCalc.rar from
+[last release](https://github.com/NazarFrenk/mzenko-test-task/releases).
 ## Example output
