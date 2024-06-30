@@ -180,7 +180,7 @@ Window {
 
                 Label {
                     id: lblResult
-                    text: "Result:  no data"
+                    text: "Result: no data"
                     font.pixelSize: 15
                     font.family: "Arial"
 
