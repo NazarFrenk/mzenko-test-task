@@ -153,6 +153,10 @@ void CircuitComponentSolver::setResistorValue(const QString &newResistorValue)
 
         setDataResistors(dataString);
     }
+    else
+    {
+        setDataResistors("Data: no data");
+    }
 }
 
 void CircuitComponentSolver::setResultResistors(const QString &newResultResistors)
