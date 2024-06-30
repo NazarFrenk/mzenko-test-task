@@ -22,5 +22,17 @@ The `Resistor Mode` tab has:
 - buttons `Remove Last` and `Clear` if user has to delete last entered resistor value or wants to enter new data set
 - label `Data: ...` displays current list of data set
 - by clicking on `Calculate` buttons label `Result: ...` changes its state depending of data (calculated value or `no data` message)
+
+The `CR Impedance Mode` tab has:
+- text field for enter resistor value (ohm, Ω)
+- text field for enter capasitor value (farad, F)
+- text field for enter frequency value (hertz, Hz)
+- by clicking on `Calculate` buttons label `Result: ...` changes its state depending of data (calculated value or `no data` message)
+
+The `IR Impedance Mode` tab same design as `CR Impedance Mode` tab:
+- text field for enter resistor value (ohm, Ω)
+- text field for enter inductor value (henry, H)
+- text field for enter frequency value (hertz, Hz)
+- by clicking on `Calculate` buttons label `Result: ...` changes its state depending of data (calculated value or `no data` message)
 ## How to run
 ## Example output

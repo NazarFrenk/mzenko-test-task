@@ -29,7 +29,7 @@ Window {
             text: qsTr("CR Impedance Mode")
         }
         TabButton {
-            text: qsTr("LR Impedance Mode")
+            text: qsTr("IR Impedance Mode")
         }
     }
 
@@ -318,7 +318,7 @@ Window {
             }
         }
         Item {
-            id: lrTab
+            id: irTab
 
             ColumnLayout {
                 anchors.horizontalCenter: parent.horizontalCenter
