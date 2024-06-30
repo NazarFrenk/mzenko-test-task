@@ -41,13 +41,13 @@ Each label has precision 5 values ​​after the dot.
 For Windows just need to download and unpack QtQmlResonantCalc.rar from
 [latest release](https://github.com/NazarFrenk/mzenko-test-task/releases).
 ## Example output
-`Resistor Mode`
+### `Resistor Mode`
 ![Empty tab](./resistor_mode_1.png)
 ![Parallel example](./resistor_mode_2.png)
 ![Series example](./resistor_mode_3.png)
-`CR Impedance Mode`
+### `CR Impedance Mode`
 ![Empty tab](./cr_mode_1.png)
 ![Example](./cr_mode_2.png)
-`IR Impedance Mode`
+### `IR Impedance Mode`
 ![Empty tab](./ir_mode_1.png)
 ![Example](./ir_mode_2.png)
