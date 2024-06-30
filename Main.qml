@@ -61,11 +61,9 @@ Window {
                 RowLayout {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                    TextField {
+                    MyStyledTextField {
                         id: inputResistor
                         placeholderText: qsTr("100")
-                        font.pixelSize: 15
-                        font.family: "Arial"
                         validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                     }
 
@@ -145,11 +143,9 @@ Window {
                     text: "Resistor (Ω):"
                 }
 
-                TextField {
+                MyStyledTextField {
                     id: inputCrResitor
                     placeholderText: qsTr("100")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                 }
 
@@ -158,11 +154,9 @@ Window {
                     text: "Capacitor (F):"
                 }
 
-                TextField {
+                MyStyledTextField {
                     id: inputCrCapasitor
                     placeholderText: qsTr("0.000001")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
                 }
 
@@ -171,11 +165,9 @@ Window {
                     text: "Frequency (Hz):"
                 }
 
-                TextField {
+                MyStyledTextField {
                     id: inputCrFrequency
                     placeholderText: qsTr("50")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
                 }
 
@@ -216,11 +208,9 @@ Window {
                     text: "Resistor (Ω):"
                 }
 
-                TextField {
+                MyStyledTextField {
                     id: inputIrResitor
                     placeholderText: qsTr("100")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                 }
 
@@ -229,11 +219,9 @@ Window {
                     text: "Inductor (H):"
                 }
 
-                TextField {
+                MyStyledTextField {
                     id: inputIrInductor
                     placeholderText: qsTr("0.1")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
                 }
 
@@ -242,11 +230,9 @@ Window {
                     text: "Frequency (Hz):"
                 }
 
-                TextField {
+                MyStyledTextField {
                     id: inputIrFrequency
                     placeholderText: qsTr("50")
-                    font.pixelSize: 15
-                    font.family: "Arial"
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
                 }
 

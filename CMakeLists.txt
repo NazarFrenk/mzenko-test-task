@@ -17,7 +17,7 @@ qt_add_qml_module(appQtQmlResonantCalc
     URI QtQmlResonantCalc
     VERSION 1.0
     QML_FILES
-        Main.qml MyStyledButton.qml MyStyledLabel.qml MyStyledRadioButton.qml
+        Main.qml MyStyledButton.qml MyStyledLabel.qml MyStyledRadioButton.qml MyStyledTextField.qml
         SOURCES CircuitComponentSolver.h CircuitComponentSolver.cpp
 )
 
