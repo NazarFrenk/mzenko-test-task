@@ -77,28 +77,9 @@ Window {
                         validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
                     }
 
-                    Button {
+                    MyStyledButton {
                         id: btnOkResistor
                         text: qsTr("OK")
-
-                        contentItem: Text {
-                            text: btnOkResistor.text
-                            color: "#F9F8FD"
-                            font.pixelSize: 15
-                            font.family: "Arial"
-                            font.weight: Font.Thin
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            elide: Text.ElideRight
-                        }
-
-                        background: Rectangle {
-                            implicitWidth: 75
-                            implicitHeight: 35
-                            color: btnOkResistor.down ? btnColorClicked :
-                                                        (btnOkResistor.hovered ? btnColorMouseOver : btnColorDefault)
-                            radius: 10
-                        }
 
                         onClicked: {
                             CircuitComponentSolver.setResistorValue(inputResistor.text)
@@ -110,28 +91,9 @@ Window {
                 RowLayout {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                    Button {
+                    MyStyledButton {
                         id: btnRemoveLastResistor
                         text: qsTr("Remove Last")
-
-                        contentItem: Text {
-                            text: btnRemoveLastResistor.text
-                            color: "#F9F8FD"
-                            font.pixelSize: 15
-                            font.family: "Arial"
-                            font.weight: Font.Thin
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            elide: Text.ElideRight
-                        }
-
-                        background: Rectangle {
-                            implicitWidth: 75
-                            implicitHeight: 35
-                            color: btnRemoveLastResistor.down ? btnColorClicked :
-                                                        (btnRemoveLastResistor.hovered ? btnColorMouseOver : btnColorDefault)
-                            radius: 10
-                        }
 
                         onClicked: {
                             CircuitComponentSolver.removeLastResistorValue()
@@ -139,28 +101,9 @@ Window {
                         }
                     }
 
-                    Button {
+                    MyStyledButton {
                         id: btnClearResistor
                         text: qsTr("Clear")
-
-                        contentItem: Text {
-                            text: btnClearResistor.text
-                            color: "#F9F8FD"
-                            font.pixelSize: 15
-                            font.family: "Arial"
-                            font.weight: Font.Thin
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            elide: Text.ElideRight
-                        }
-
-                        background: Rectangle {
-                            implicitWidth: 75
-                            implicitHeight: 35
-                            color: btnClearResistor.down ? btnColorClicked :
-                                                        (btnClearResistor.hovered ? btnColorMouseOver : btnColorDefault)
-                            radius: 10
-                        }
 
                         onClicked: {
                             CircuitComponentSolver.clearResistorsData()
@@ -187,28 +130,9 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
-                Button {
+                MyStyledButton {
                     id: btnResCalc
                     text: qsTr("Calculate")
-
-                    contentItem: Text {
-                        text: btnResCalc.text
-                        color: "#F9F8FD"
-                        font.pixelSize: 15
-                        font.family: "Arial"
-                        font.weight: Font.Thin
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                    }
-
-                    background: Rectangle {
-                        implicitWidth: 75
-                        implicitHeight: 35
-                        color: btnResCalc.down ? btnColorClicked :
-                                                        (btnResCalc.hovered ? btnColorMouseOver : btnColorDefault)
-                        radius: 10
-                    }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
@@ -282,28 +206,9 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
-                Button {
+                MyStyledButton {
                     id: btnCrCalc
                     text: qsTr("Calculate")
-
-                    contentItem: Text {
-                        text: btnCrCalc.text
-                        color: "#F9F8FD"
-                        font.pixelSize: 15
-                        font.family: "Arial"
-                        font.weight: Font.Thin
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                    }
-
-                    background: Rectangle {
-                        implicitWidth: 75
-                        implicitHeight: 35
-                        color: btnCrCalc.down ? btnColorClicked :
-                                                        (btnCrCalc.hovered ? btnColorMouseOver : btnColorDefault)
-                        radius: 10
-                    }
 
                     onClicked: {
                         CircuitComponentSolver.setResistorCr(inputCrResitor.text)
@@ -380,28 +285,9 @@ Window {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
-                Button {
+                MyStyledButton {
                     id: btnLrCalc
                     text: qsTr("Calculate")
-
-                    contentItem: Text {
-                        text: btnLrCalc.text
-                        color: "#F9F8FD"
-                        font.pixelSize: 15
-                        font.family: "Arial"
-                        font.weight: Font.Thin
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                    }
-
-                    background: Rectangle {
-                        implicitWidth: 75
-                        implicitHeight: 35
-                        color: btnLrCalc.down ? btnColorClicked :
-                                                        (btnLrCalc.hovered ? btnColorMouseOver : btnColorDefault)
-                        radius: 10
-                    }
 
                     onClicked: {
                         CircuitComponentSolver.setResistorIr(inputIrResitor.text)
