@@ -14,10 +14,6 @@ Window {
     minimumWidth: 400
     minimumHeight: 450
 
-    property color btnColorDefault: "#2A60FF"
-    property color btnColorMouseOver: "#2ABBFF"
-    property color btnColorClicked: "#2ADDFF"
-
     TabBar {
         id: bar
         width: parent.width
