@@ -39,7 +39,7 @@ Each text field accepts a dot-separated float value greater than zero and has sa
 Each label has precision 5 values ​​after the dot.
 ## How to run
 For Windows just need to download and unpack QtQmlResonantCalc.rar from
-[last release](https://github.com/NazarFrenk/mzenko-test-task/releases).
+[latest release](https://github.com/NazarFrenk/mzenko-test-task/releases).
 ## Example output
 `Resistor Mode`
 ![Empty tab](./resistor_mode_1.png)
