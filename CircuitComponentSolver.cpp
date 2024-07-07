@@ -143,11 +143,9 @@ QString CircuitComponentSolver::result() const
 
 void CircuitComponentSolver::setResistorValue(const float &newResistorValue)
 {
-    float value = newResistorValue;
-
-    if (value > 0)
+    if (newResistorValue > 0)
     {
-        m_resistors->push_back(value);
+        m_resistors->push_back(newResistorValue);
 
         QString dataString = createDataResistorsString();
 
