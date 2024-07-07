@@ -118,7 +118,7 @@ QString CircuitComponentSolver::calculateIRImpedance()
     return QString("%1 + j%2 Ω").arg(m_resistor, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
 }
 
-QString CircuitComponentSolver::resistorValue() const
+float CircuitComponentSolver::resistorValue() const
 {
     return m_resistorValue;
 }
@@ -141,9 +141,9 @@ QString CircuitComponentSolver::result() const
     return m_resultResistors;
 }
 
-void CircuitComponentSolver::setResistorValue(const QString &newResistorValue)
+void CircuitComponentSolver::setResistorValue(const float &newResistorValue)
 {
-    float value = newResistorValue.toFloat();
+    float value = newResistorValue;
 
     if (value > 0)
     {

@@ -8,7 +8,7 @@
 class CircuitComponentSolver : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString resistorValue READ resistorValue WRITE setResistorValue NOTIFY resistorValueChanged FINAL)
+    Q_PROPERTY(float resistorValue READ resistorValue WRITE setResistorValue NOTIFY resistorValueChanged FINAL)
     Q_PROPERTY(QString dataResistors READ data WRITE setDataResistors NOTIFY dataResistorsChanged FINAL)
     Q_PROPERTY(QString resultResistors READ result WRITE setResultResistors NOTIFY resultResistorsChanged FINAL)
 
@@ -26,7 +26,7 @@ public:
     explicit CircuitComponentSolver(QObject *parent = nullptr);
     ~CircuitComponentSolver();
 
-    QString resistorValue() const;
+    float resistorValue() const;
 
     QString data() const;
 
@@ -49,7 +49,7 @@ public:
     QString resultIr() const;
 
 public slots:
-    void setResistorValue(const QString &newResistorValue);
+    void setResistorValue(const float &newResistorValue);
     void setDataResistors(const QString &newDataResistors);
     void removeLastResistorValue();
     void clearResistorsData();
@@ -94,7 +94,7 @@ private:
     QString calculateParallelResistance();
     QString calculateCRImpedance();
     QString calculateIRImpedance();
-    QString m_resistorValue;
+    float m_resistorValue;
     QString m_dataResistors;
     QString m_resultResistors;
     QString m_resistorCr;
