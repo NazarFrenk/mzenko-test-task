@@ -12,9 +12,9 @@ class CircuitComponentSolver : public QObject
     Q_PROPERTY(QString dataResistors READ data WRITE setDataResistors NOTIFY dataResistorsChanged FINAL)
     Q_PROPERTY(QString resultResistors READ result WRITE setResultResistors NOTIFY resultResistorsChanged FINAL)
 
-    Q_PROPERTY(QString resistorCr READ resistorCR WRITE setResistorCr NOTIFY resistorCrChanged FINAL)
-    Q_PROPERTY(QString capasitorCr READ capasitorCr WRITE setCapasitorCr NOTIFY capasitorCrChanged FINAL)
-    Q_PROPERTY(QString frequencyCr READ frequencyCr WRITE setFrequencyCr NOTIFY frequencyCrChanged FINAL)
+    Q_PROPERTY(float resistorCr READ resistorCR WRITE setResistorCr NOTIFY resistorCrChanged FINAL)
+    Q_PROPERTY(float capasitorCr READ capasitorCr WRITE setCapasitorCr NOTIFY capasitorCrChanged FINAL)
+    Q_PROPERTY(float frequencyCr READ frequencyCr WRITE setFrequencyCr NOTIFY frequencyCrChanged FINAL)
     Q_PROPERTY(QString resultCr READ resultCr WRITE setResultCr NOTIFY resultCrChanged FINAL)
 
     Q_PROPERTY(QString resistorIr READ resistorIr WRITE setResistorIr NOTIFY resistorIrChanged FINAL)
@@ -32,11 +32,11 @@ public:
 
     QString result() const;
 
-    QString resistorCR() const;
+    float resistorCR() const;
 
-    QString capasitorCr() const;
+    float capasitorCr() const;
 
-    QString frequencyCr() const;
+    float frequencyCr() const;
 
     QString resultCr() const;
 
@@ -56,9 +56,9 @@ public slots:
     void setResultResistors(const QString &newResultResistors);
     void calculateResistance(int type);
 
-    void setResistorCr(const QString &newResistorCr);
-    void setCapasitorCr(const QString &newCapasitorCr);
-    void setFrequencyCr(const QString &newFrequencyCr);
+    void setResistorCr(const float &newResistorCr);
+    void setCapasitorCr(const float &newCapasitorCr);
+    void setFrequencyCr(const float &newFrequencyCr);
     void setResultCr(const QString &newResultCr);
     void createCrResult();
 
@@ -97,9 +97,9 @@ private:
     float m_resistorValue;
     QString m_dataResistors;
     QString m_resultResistors;
-    QString m_resistorCr;
-    QString m_capasitorCr;
-    QString m_frequencyCr;
+    float m_resistorCr;
+    float m_capasitorCr;
+    float m_frequencyCr;
     QString m_resultCr;
     QString m_resistorIr;
     QString m_inductorIr;

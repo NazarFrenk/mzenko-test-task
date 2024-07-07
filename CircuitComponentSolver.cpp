@@ -165,48 +165,42 @@ void CircuitComponentSolver::setResultResistors(const QString &newResultResistor
     emit resultResistorsChanged();
 }
 
-QString CircuitComponentSolver::resistorCR() const
+float CircuitComponentSolver::resistorCR() const
 {
     return m_resistorCr;
 }
 
-void CircuitComponentSolver::setResistorCr(const QString &newResistorCr)
+void CircuitComponentSolver::setResistorCr(const float &newResistorCr)
 {
-    float value = newResistorCr.toFloat();
-
-    if (value > 0)
+    if (newResistorCr > 0)
     {
-        m_resistor = value;
+        m_resistor = newResistorCr;
     }
 }
 
-QString CircuitComponentSolver::capasitorCr() const
+float CircuitComponentSolver::capasitorCr() const
 {
     return m_capasitorCr;
 }
 
-void CircuitComponentSolver::setCapasitorCr(const QString &newCapasitorCr)
+void CircuitComponentSolver::setCapasitorCr(const float &newCapasitorCr)
 {
-    float value = newCapasitorCr.toFloat();
-
-    if (value > 0)
+    if (newCapasitorCr > 0)
     {
-        m_capacitor = value;
+        m_capacitor = newCapasitorCr;
     }
 }
 
-QString CircuitComponentSolver::frequencyCr() const
+float CircuitComponentSolver::frequencyCr() const
 {
     return m_frequencyCr;
 }
 
-void CircuitComponentSolver::setFrequencyCr(const QString &newFrequencyCr)
+void CircuitComponentSolver::setFrequencyCr(const float &newFrequencyCr)
 {
-    float value = newFrequencyCr.toFloat();
-
-    if (value > 0)
+    if (newFrequencyCr > 0)
     {
-        m_frequency = value;
+        m_frequency = newFrequencyCr;
     }
 }
 
