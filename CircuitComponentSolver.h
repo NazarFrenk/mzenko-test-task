@@ -17,9 +17,9 @@ class CircuitComponentSolver : public QObject
     Q_PROPERTY(float frequencyCr READ frequencyCr WRITE setFrequencyCr NOTIFY frequencyCrChanged FINAL)
     Q_PROPERTY(QString resultCr READ resultCr WRITE setResultCr NOTIFY resultCrChanged FINAL)
 
-    Q_PROPERTY(QString resistorIr READ resistorIr WRITE setResistorIr NOTIFY resistorIrChanged FINAL)
-    Q_PROPERTY(QString inductorIr READ inductorIr WRITE setInductorIr NOTIFY inductorIrChanged FINAL)
-    Q_PROPERTY(QString frequencyIr READ frequencyIr WRITE setFrequencyIr NOTIFY frequencyIrChanged FINAL)
+    Q_PROPERTY(float resistorIr READ resistorIr WRITE setResistorIr NOTIFY resistorIrChanged FINAL)
+    Q_PROPERTY(float inductorIr READ inductorIr WRITE setInductorIr NOTIFY inductorIrChanged FINAL)
+    Q_PROPERTY(float frequencyIr READ frequencyIr WRITE setFrequencyIr NOTIFY frequencyIrChanged FINAL)
     Q_PROPERTY(QString resultIr READ resultIr WRITE setResultIr NOTIFY resultIrChanged FINAL)
 
 public:
@@ -40,11 +40,11 @@ public:
 
     QString resultCr() const;
 
-    QString resistorIr() const;
+    float resistorIr() const;
 
-    QString inductorIr() const;
+    float inductorIr() const;
 
-    QString frequencyIr() const;
+    float frequencyIr() const;
 
     QString resultIr() const;
 
@@ -62,9 +62,9 @@ public slots:
     void setResultCr(const QString &newResultCr);
     void createCrResult();
 
-    void setResistorIr(const QString &newResistorIr);
-    void setInductorIr(const QString &newInductorIr);
-    void setFrequencyIr(const QString &newFrequencyIr);
+    void setResistorIr(const float &newResistorIr);
+    void setInductorIr(const float &newInductorIr);
+    void setFrequencyIr(const float &newFrequencyIr);
     void setResultIr(const QString &newResultIr);
     void createIrResult();
 
@@ -101,9 +101,9 @@ private:
     float m_capasitorCr;
     float m_frequencyCr;
     QString m_resultCr;
-    QString m_resistorIr;
-    QString m_inductorIr;
-    QString m_frequencyIr;
+    float m_resistorIr;
+    float m_inductorIr;
+    float m_frequencyIr;
     QString m_resultIr;
 };
 

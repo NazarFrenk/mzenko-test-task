@@ -233,48 +233,42 @@ void CircuitComponentSolver::createCrResult()
     setResultCr(result);
 }
 
-QString CircuitComponentSolver::resistorIr() const
+float CircuitComponentSolver::resistorIr() const
 {
     return m_resistorIr;
 }
 
-void CircuitComponentSolver::setResistorIr(const QString &newResistorIr)
+void CircuitComponentSolver::setResistorIr(const float &newResistorIr)
 {
-    float value = newResistorIr.toFloat();
-
-    if (value > 0)
+    if (newResistorIr > 0)
     {
-        m_resistor = value;
+        m_resistor = newResistorIr;
     }
 }
 
-QString CircuitComponentSolver::inductorIr() const
+float CircuitComponentSolver::inductorIr() const
 {
     return m_inductorIr;
 }
 
-void CircuitComponentSolver::setInductorIr(const QString &newInductorIr)
+void CircuitComponentSolver::setInductorIr(const float &newInductorIr)
 {
-    float value = newInductorIr.toFloat();
-
-    if (value > 0)
+    if (newInductorIr > 0)
     {
-        m_inductor = value;
+        m_inductor = newInductorIr;
     }
 }
 
-QString CircuitComponentSolver::frequencyIr() const
+float CircuitComponentSolver::frequencyIr() const
 {
     return m_frequencyIr;
 }
 
-void CircuitComponentSolver::setFrequencyIr(const QString &newFrequencyIr)
+void CircuitComponentSolver::setFrequencyIr(const float &newFrequencyIr)
 {
-    float value = newFrequencyIr.toFloat();
-
-    if (value > 0)
+    if (newFrequencyIr > 0)
     {
-        m_frequency = value;
+        m_frequency = newFrequencyIr;
     }
 }
 
