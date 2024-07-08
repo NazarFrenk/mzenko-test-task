@@ -100,7 +100,7 @@ private:
     float m_resistorCr;
     float m_capasitorCr;
     float m_frequencyCr;
-    QString m_resultCr;
+    QString m_resultCr = "Result Impedance: no data";
     float m_resistorIr;
     float m_inductorIr;
     float m_frequencyIr;

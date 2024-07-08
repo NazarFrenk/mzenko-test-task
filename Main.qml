@@ -173,7 +173,7 @@ Window {
 
                 MyStyledLabel {
                     id: lblCrResult
-                    text: "Result Impedance: no data"
+                    text: CircuitComponentSolver.resultCr
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -187,7 +187,6 @@ Window {
                         CircuitComponentSolver.setCapasitorCr(inputCrCapasitor.text)
                         CircuitComponentSolver.setFrequencyCr(inputCrFrequency.text)
                         CircuitComponentSolver.createCrResult()
-                        lblCrResult.text = CircuitComponentSolver.resultCr
                     }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
