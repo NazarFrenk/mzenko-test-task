@@ -234,11 +234,17 @@ Window {
                     id: inputIrFrequency
                     placeholderText: qsTr("50")
                     validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
+
+                    //onEditingFinished: CircuitComponentSolver.frequencyIr
+                    //onEditingFinished: CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
+                    //text: CircuitComponentSolver.frequencyIr
+
                 }
 
                 MyStyledLabel {
                     id: lblIrResult
-                    text: "Result Impedance: no data"
+                    //text: "Result Impedance: no data"
+                    text: CircuitComponentSolver.resultIr
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -252,7 +258,7 @@ Window {
                         CircuitComponentSolver.setInductorIr(inputIrInductor.text)
                         CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
                         CircuitComponentSolver.createIrResult()
-                        lblIrResult.text = CircuitComponentSolver.resultIr
+                        //lblIrResult.text = CircuitComponentSolver.resultIr
                     }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

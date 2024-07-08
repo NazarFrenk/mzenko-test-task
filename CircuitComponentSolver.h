@@ -104,7 +104,7 @@ private:
     float m_resistorIr;
     float m_inductorIr;
     float m_frequencyIr;
-    QString m_resultIr;
+    QString m_resultIr = "Result Impedance: no data";
 };
 
 #endif // CIRCUITCOMPONENTSOLVER_H
