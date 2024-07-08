@@ -86,8 +86,7 @@ Window {
                         text: qsTr("Remove Last")
 
                         onClicked: {
-                            CircuitComponentSolver.removeLastResistorValue()
-                            lblData.text = CircuitComponentSolver.dataResistors
+                            CircuitComponentSolver.removeLastResistorValue
                         }
                     }
 
@@ -96,22 +95,21 @@ Window {
                         text: qsTr("Clear")
 
                         onClicked: {
-                            CircuitComponentSolver.clearResistorsData()
-                            lblData.text = CircuitComponentSolver.dataResistors
+                            CircuitComponentSolver.clearResistorsData
                         }
                     }
                 }
 
                 MyStyledLabel {
                     id: lblData
-                    text: "Data: no data"
+                    text: CircuitComponentSolver.dataResistors
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
 
                 MyStyledLabel {
                     id: lblResult
-                    text: "Result: no data"
+                    text: CircuitComponentSolver.resultResistors
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }

@@ -95,8 +95,8 @@ private:
     QString calculateCRImpedance();
     QString calculateIRImpedance();
     float m_resistorValue;
-    QString m_dataResistors;
-    QString m_resultResistors;
+    QString m_dataResistors = "Data: no data";
+    QString m_resultResistors = "Result: no data";
     float m_resistorCr;
     float m_capasitorCr;
     float m_frequencyCr;
