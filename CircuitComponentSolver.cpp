@@ -240,10 +240,19 @@ float CircuitComponentSolver::resistorIr() const
 
 void CircuitComponentSolver::setResistorIr(const float &newResistorIr)
 {
+    if (qIsNaN(newResistorIr))
+        return;
+
+    if (m_resistor == newResistorIr)
+        return;
+    m_resistor = newResistorIr;
+
     if (newResistorIr > 0)
     {
         m_resistor = newResistorIr;
     }
+
+    emit resistorIrChanged();
 }
 
 float CircuitComponentSolver::inductorIr() const
@@ -253,10 +262,19 @@ float CircuitComponentSolver::inductorIr() const
 
 void CircuitComponentSolver::setInductorIr(const float &newInductorIr)
 {
+    if (qIsNaN(newInductorIr))
+        return;
+
+    if (m_inductor == newInductorIr)
+        return;
+    m_inductor = newInductorIr;
+
     if (newInductorIr > 0)
     {
         m_inductor = newInductorIr;
     }
+
+    emit inductorIrChanged();
 }
 
 float CircuitComponentSolver::frequencyIr() const

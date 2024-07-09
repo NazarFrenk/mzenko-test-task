@@ -208,7 +208,11 @@ Window {
                 MyStyledTextField {
                     id: inputIrResitor
                     placeholderText: qsTr("100")
-                    validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
+                    //validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
+
+                    onEditingFinished: {
+                        CircuitComponentSolver.resistorIr = inputIrResitor.text
+                    }
                 }
 
                 MyStyledLabel {
@@ -219,7 +223,11 @@ Window {
                 MyStyledTextField {
                     id: inputIrInductor
                     placeholderText: qsTr("0.1")
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
+                    //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
+
+                    onEditingFinished: {
+                        CircuitComponentSolver.inductorIr = inputIrInductor.text
+                    }
                 }
 
                 MyStyledLabel {
@@ -235,7 +243,6 @@ Window {
                     onEditingFinished: {
                         CircuitComponentSolver.frequencyIr = inputIrFrequency.text
                     }
-
                 }
 
                 MyStyledLabel {
@@ -250,9 +257,6 @@ Window {
                     text: qsTr("Calculate")
 
                     onClicked: {
-                        CircuitComponentSolver.setResistorIr(inputIrResitor.text)
-                        CircuitComponentSolver.setInductorIr(inputIrInductor.text)
-                        //CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
                         CircuitComponentSolver.createIrResult()
                     }
 
