@@ -149,7 +149,6 @@ void CircuitComponentSolver::setResistorValue(const float &newResistorValue)
         return;
     }
 
-    qDebug() << "CircuitComponentSolver::setResistorValue" << "check for update";
     if (m_resistor == newResistorValue)
         return;
     m_resistor = newResistorValue;
