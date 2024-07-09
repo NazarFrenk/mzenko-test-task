@@ -234,13 +234,18 @@ Window {
 
                     //onEditingFinished: CircuitComponentSolver.frequencyIr
                     //onEditingFinished: CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
+                    onEditingFinished: {
+                        CircuitComponentSolver.frequencyIr = inputIrFrequency.text
+                        //solver.setFrequencyIr(inputIrFrequency.text)
+                        console.info("onEditingFinished: inputIrFrequency")
+                    }
+
                     //text: CircuitComponentSolver.frequencyIr
 
                 }
 
                 MyStyledLabel {
                     id: lblIrResult
-                    //text: "Result Impedance: no data"
                     text: CircuitComponentSolver.resultIr
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -255,7 +260,6 @@ Window {
                         CircuitComponentSolver.setInductorIr(inputIrInductor.text)
                         CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
                         CircuitComponentSolver.createIrResult()
-                        //lblIrResult.text = CircuitComponentSolver.resultIr
                     }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

@@ -276,6 +276,8 @@ void CircuitComponentSolver::setFrequencyIr(const float &newFrequencyIr)
     {
         m_frequency = newFrequencyIr;
     }
+
+    emit frequencyIrChanged();
 }
 
 QString CircuitComponentSolver::resultIr() const
