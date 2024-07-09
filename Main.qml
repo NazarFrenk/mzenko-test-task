@@ -144,7 +144,11 @@ Window {
                 MyStyledTextField {
                     id: inputCrResitor
                     placeholderText: qsTr("100")
-                    validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
+                    //validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
+
+                    onEditingFinished: {
+                        CircuitComponentSolver.resistorCr = inputCrResitor.text
+                    }
                 }
 
                 MyStyledLabel {
@@ -155,7 +159,11 @@ Window {
                 MyStyledTextField {
                     id: inputCrCapasitor
                     placeholderText: qsTr("0.000001")
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
+                    //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
+
+                    onEditingFinished: {
+                        CircuitComponentSolver.capasitorCr = inputCrCapasitor.text
+                    }
                 }
 
                 MyStyledLabel {
@@ -166,7 +174,11 @@ Window {
                 MyStyledTextField {
                     id: inputCrFrequency
                     placeholderText: qsTr("50")
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
+                    //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
+
+                    onEditingFinished: {
+                        CircuitComponentSolver.frequencyCr = inputCrFrequency.text
+                    }
                 }
 
                 MyStyledLabel {
@@ -181,9 +193,6 @@ Window {
                     text: qsTr("Calculate")
 
                     onClicked: {
-                        CircuitComponentSolver.setResistorCr(inputCrResitor.text)
-                        CircuitComponentSolver.setCapasitorCr(inputCrCapasitor.text)
-                        CircuitComponentSolver.setFrequencyCr(inputCrFrequency.text)
                         CircuitComponentSolver.createCrResult()
                     }
 

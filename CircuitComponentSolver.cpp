@@ -172,10 +172,19 @@ float CircuitComponentSolver::resistorCR() const
 
 void CircuitComponentSolver::setResistorCr(const float &newResistorCr)
 {
+    if (qIsNaN(newResistorCr))
+        return;
+
+    if (m_resistor == newResistorCr)
+        return;
+    m_resistor = newResistorCr;
+
     if (newResistorCr > 0)
     {
         m_resistor = newResistorCr;
     }
+
+    emit resistorCrChanged();
 }
 
 float CircuitComponentSolver::capasitorCr() const
@@ -185,10 +194,19 @@ float CircuitComponentSolver::capasitorCr() const
 
 void CircuitComponentSolver::setCapasitorCr(const float &newCapasitorCr)
 {
+    if (qIsNaN(newCapasitorCr))
+        return;
+
+    if (m_capacitor == newCapasitorCr)
+        return;
+    m_capacitor = newCapasitorCr;
+
     if (newCapasitorCr > 0)
     {
         m_capacitor = newCapasitorCr;
     }
+
+    emit capasitorCrChanged();
 }
 
 float CircuitComponentSolver::frequencyCr() const
@@ -198,10 +216,19 @@ float CircuitComponentSolver::frequencyCr() const
 
 void CircuitComponentSolver::setFrequencyCr(const float &newFrequencyCr)
 {
+    if (qIsNaN(newFrequencyCr))
+        return;
+
+    if (m_frequency == newFrequencyCr)
+        return;
+    m_frequency = newFrequencyCr;
+
     if (newFrequencyCr > 0)
     {
         m_frequency = newFrequencyCr;
     }
+
+    emit frequencyCrChanged();
 }
 
 QString CircuitComponentSolver::resultCr() const
