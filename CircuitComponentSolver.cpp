@@ -144,8 +144,12 @@ QString CircuitComponentSolver::result() const
 void CircuitComponentSolver::setResistorValue(const float &newResistorValue)
 {
     if (qIsNaN(newResistorValue))
+    {
+        m_resistor = -1; // wrong input
         return;
+    }
 
+    qDebug() << "CircuitComponentSolver::setResistorValue" << "check for update";
     if (m_resistor == newResistorValue)
         return;
     m_resistor = newResistorValue;
