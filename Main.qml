@@ -230,17 +230,11 @@ Window {
                 MyStyledTextField {
                     id: inputIrFrequency
                     placeholderText: qsTr("50")
-                    validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
+                    //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$
 
-                    //onEditingFinished: CircuitComponentSolver.frequencyIr
-                    //onEditingFinished: CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
                     onEditingFinished: {
                         CircuitComponentSolver.frequencyIr = inputIrFrequency.text
-                        //solver.setFrequencyIr(inputIrFrequency.text)
-                        console.info("onEditingFinished: inputIrFrequency")
                     }
-
-                    //text: CircuitComponentSolver.frequencyIr
 
                 }
 
@@ -258,7 +252,7 @@ Window {
                     onClicked: {
                         CircuitComponentSolver.setResistorIr(inputIrResitor.text)
                         CircuitComponentSolver.setInductorIr(inputIrInductor.text)
-                        CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
+                        //CircuitComponentSolver.setFrequencyIr(inputIrFrequency.text)
                         CircuitComponentSolver.createIrResult()
                     }
 

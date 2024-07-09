@@ -2,6 +2,7 @@
 #define CIRCUITCOMPONENTSOLVER_H
 
 #include <QObject>
+#include <QtNumeric>
 #include <QDebug>
 #include <deque>
 

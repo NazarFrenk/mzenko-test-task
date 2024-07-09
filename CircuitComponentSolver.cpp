@@ -266,7 +266,8 @@ float CircuitComponentSolver::frequencyIr() const
 
 void CircuitComponentSolver::setFrequencyIr(const float &newFrequencyIr)
 {
-    qDebug() << "setting frequency IR:" << newFrequencyIr;
+    if (qIsNaN(newFrequencyIr))
+        return;
 
     if (m_frequency == newFrequencyIr)
         return;
