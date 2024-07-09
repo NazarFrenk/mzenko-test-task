@@ -64,7 +64,11 @@ Window {
                     MyStyledTextField {
                         id: inputResistor
                         placeholderText: qsTr("100")
-                        validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
+                        //validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
+
+                        onEditingFinished: {
+                            CircuitComponentSolver.resistorValue = inputResistor.text
+                        }
                     }
 
                     MyStyledButton {
@@ -72,8 +76,7 @@ Window {
                         text: qsTr("OK")
 
                         onClicked: {
-                            CircuitComponentSolver.setResistorValue(inputResistor.text)
-                            lblData.text = CircuitComponentSolver.dataResistors
+                            CircuitComponentSolver.addNewResistor()
                         }
                     }
                 }
@@ -86,7 +89,7 @@ Window {
                         text: qsTr("Remove Last")
 
                         onClicked: {
-                            CircuitComponentSolver.removeLastResistorValue
+                            CircuitComponentSolver.removeLastResistorValue()
                         }
                     }
 
@@ -95,7 +98,7 @@ Window {
                         text: qsTr("Clear")
 
                         onClicked: {
-                            CircuitComponentSolver.clearResistorsData
+                            CircuitComponentSolver.clearResistorsData()
                         }
                     }
                 }
@@ -122,7 +125,6 @@ Window {
 
                     onClicked: {
                         CircuitComponentSolver.calculateResistance(btnParallel.checked)
-                        lblResult.text = CircuitComponentSolver.resultResistors;
                     }
                 }
             }

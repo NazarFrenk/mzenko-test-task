@@ -51,6 +51,7 @@ public:
 
 public slots:
     void setResistorValue(const float &newResistorValue);
+    void addNewResistor();
     void setDataResistors(const QString &newDataResistors);
     void removeLastResistorValue();
     void clearResistorsData();

@@ -143,17 +143,25 @@ QString CircuitComponentSolver::result() const
 
 void CircuitComponentSolver::setResistorValue(const float &newResistorValue)
 {
-    if (newResistorValue > 0)
+    if (qIsNaN(newResistorValue))
+        return;
+
+    if (m_resistor == newResistorValue)
+        return;
+    m_resistor = newResistorValue;
+
+    emit resistorValueChanged();
+}
+
+void CircuitComponentSolver::addNewResistor()
+{
+    if (m_resistor > 0)
     {
-        m_resistors->push_back(newResistorValue);
+        m_resistors->push_back(m_resistor);
 
         QString dataString = createDataResistorsString();
 
         setDataResistors(dataString);
-    }
-    else
-    {
-        setDataResistors("Data: no data");
     }
 }
 
