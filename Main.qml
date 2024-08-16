@@ -14,6 +14,13 @@ Window {
     minimumWidth: 400
     minimumHeight: 450
 
+    property var multiplier_model: [
+        {text: qsTr("µ (micro)"), value: 1E-6},
+        {text: qsTr("m (milli)"), value: 1E-3},
+        {text: qsTr("(no prefix)"), value: 1},
+        {text: qsTr("k (kilo)"), value: 1E+3}
+    ]
+
     TabBar {
         id: bar
         width: parent.width
@@ -26,6 +33,10 @@ Window {
         }
         TabButton {
             text: qsTr("IR Impedance Mode")
+        }
+
+        onCurrentIndexChanged: {
+            CircuitComponentSolver.currentTapIndex = currentIndex
         }
     }
 
@@ -49,13 +60,21 @@ Window {
                     id: btnParallel
                     text: qsTr("Parallel")
                     font.bold: btnParallel.checked
-                    checked: true
+                    checked: CircuitComponentSolver.isParallel
+
+                    onCheckedChanged: {
+                        CircuitComponentSolver.isParallel = btnParallel.checked
+                    }
                 }
 
                 MyStyledRadioButton {
                     id: btnSeries
                     text: qsTr("Series")
                     font.bold: btnSeries.checked
+
+                    onCheckedChanged: {
+                        CircuitComponentSolver.isParallel = !btnSeries.checked
+                    }
                 }
 
                 RowLayout {
@@ -68,15 +87,6 @@ Window {
 
                         onEditingFinished: {
                             CircuitComponentSolver.resistorValue = inputResistor.text
-                        }
-                    }
-
-                    MyStyledButton {
-                        id: btnOkResistor
-                        text: qsTr("OK")
-
-                        onClicked: {
-                            CircuitComponentSolver.addNewResistor()
                         }
                     }
                 }
@@ -116,17 +126,6 @@ Window {
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
-
-                MyStyledButton {
-                    id: btnResCalc
-                    text: qsTr("Calculate")
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-                    onClicked: {
-                        CircuitComponentSolver.calculateResistance(btnParallel.checked)
-                    }
-                }
             }
         }
         Item {
@@ -148,8 +147,21 @@ Window {
                     placeholderText: qsTr("100")
                     //validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
 
+                    text: {
+                        console.log("inputCrResitor::text", CircuitComponentSolver.resistorCr)
+                        return CircuitComponentSolver.resistorCr
+                    }
+
                     onEditingFinished: {
                         CircuitComponentSolver.resistorCr = inputCrResitor.text
+                    }
+
+                    onIncrease: {
+                        CircuitComponentSolver.resistorCr += 1
+                    }
+                    onDecrease: {
+                        if(CircuitComponentSolver.resistorCr > 0)
+                            CircuitComponentSolver.resistorCr -= 1
                     }
                 }
 
@@ -158,13 +170,44 @@ Window {
                     text: "Capacitor (F):"
                 }
 
-                MyStyledTextField {
-                    id: inputCrCapasitor
-                    placeholderText: qsTr("0.000001")
-                    //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
+                RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                    onEditingFinished: {
-                        CircuitComponentSolver.capasitorCr = inputCrCapasitor.text
+                    MyStyledTextField {
+                        id: inputCrCapasitor
+                        placeholderText: qsTr("0.000001")
+                        //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*F$/}
+
+                        text: {
+                            console.log("inputCrCapasitor::text", CircuitComponentSolver.capasitorCr)
+                            return CircuitComponentSolver.capasitorCr
+                        }
+
+                        onEditingFinished: {
+                            CircuitComponentSolver.capasitorCr = inputCrCapasitor.text
+                        }
+
+                        onIncrease: {
+                            CircuitComponentSolver.capasitorCr += 1
+                        }
+                        onDecrease: {
+                            if(CircuitComponentSolver.capasitorCr > 0)
+                                CircuitComponentSolver.capasitorCr -= 1
+                        }
+                    }
+
+                    MyStyledComboBox {
+                        id: crCapasitorPrefix
+                        currentIndex: 2
+
+                        textRole: "text"
+                        valueRole: "value"
+                        model: root.multiplier_model
+                        // model: ["p (pico)", "n (nano)", "µ (micro)", "m (milli)", "(no prefix)", "k (kilo)" ]// "M (mega)", "G (Giga)", "T (Tera)"]
+
+                        onCurrentValueChanged: {
+                            CircuitComponentSolver.capasitorMultiplier = crCapasitorPrefix.currentValue
+                        }
                     }
                 }
 
@@ -178,25 +221,28 @@ Window {
                     placeholderText: qsTr("50")
                     //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$/}
 
+                    text: {
+                        console.log("inputCrFrequency::text", CircuitComponentSolver.frequencyCr)
+                        return CircuitComponentSolver.frequencyCr
+                    }
+
                     onEditingFinished: {
-                        CircuitComponentSolver.frequencyCr = inputCrFrequency.text
+                        console.log("inputCrFrequency::onEditingFinished", inputCrFrequency.text)
+                        CircuitComponentSolver.frequencyCr = parseFloat(inputCrFrequency.text)
+                    }
+
+                    onIncrease: {
+                        CircuitComponentSolver.frequencyCr += 1
+                    }
+                    onDecrease: {
+                        if(CircuitComponentSolver.frequencyCr > 0)
+                            CircuitComponentSolver.frequencyCr -= 1
                     }
                 }
 
                 MyStyledLabel {
                     id: lblCrResult
                     text: CircuitComponentSolver.resultCr
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
-
-                MyStyledButton {
-                    id: btnCrCalc
-                    text: qsTr("Calculate")
-
-                    onClicked: {
-                        CircuitComponentSolver.createCrResult()
-                    }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }
@@ -221,8 +267,21 @@ Window {
                     placeholderText: qsTr("100")
                     //validator: RegularExpressionValidator{regularExpression: /^[0-9./]+$/}
 
+                    text: {
+                        console.log("inputIrResitor::text", CircuitComponentSolver.resistorIr)
+                        return CircuitComponentSolver.resistorIr
+                    }
+
                     onEditingFinished: {
                         CircuitComponentSolver.resistorIr = inputIrResitor.text
+                    }
+
+                    onIncrease: {
+                        CircuitComponentSolver.resistorIr += 1
+                    }
+                    onDecrease: {
+                        if(CircuitComponentSolver.resistorIr > 0)
+                            CircuitComponentSolver.resistorIr -= 1
                     }
                 }
 
@@ -231,13 +290,44 @@ Window {
                     text: "Inductor (H):"
                 }
 
-                MyStyledTextField {
-                    id: inputIrInductor
-                    placeholderText: qsTr("0.1")
-                    //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
+                RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                    onEditingFinished: {
-                        CircuitComponentSolver.inductorIr = inputIrInductor.text
+                    MyStyledTextField {
+                        id: inputIrInductor
+                        placeholderText: qsTr("0.1")
+                        //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*H$/}
+
+                        text: {
+                            console.log("inputIrInductor::text", CircuitComponentSolver.inductorIr)
+                            return CircuitComponentSolver.inductorIr
+                        }
+
+                        onEditingFinished: {
+                            CircuitComponentSolver.inductorIr = inputIrInductor.text
+                        }
+
+                        onIncrease: {
+                            CircuitComponentSolver.inductorIr += 1
+                        }
+                        onDecrease: {
+                            if(CircuitComponentSolver.inductorIr > 0)
+                                CircuitComponentSolver.inductorIr -= 1
+                        }
+                    }
+
+                    MyStyledComboBox {
+                        id: irInductorPrefix
+                        currentIndex: 2
+
+                        textRole: "text"
+                        valueRole: "value"
+                        model: root.multiplier_model//["p (pico)", "n (nano)", "µ (micro)", "m (milli)", "(no prefix)", "k (kilo)" ]// "M (mega)", "G (Giga)", "T (Tera)"]
+
+                        onCurrentValueChanged: {
+                            console.log("irInductorPrefix::onCurrentValueChanged", currentValue)
+                            CircuitComponentSolver.inductorMultiplier = irInductorPrefix.currentValue
+                        }
                     }
                 }
 
@@ -251,25 +341,27 @@ Window {
                     placeholderText: qsTr("50")
                     //validator: RegularExpressionValidator{regularExpression: /\d+(\.\d+)?\s*Hz$
 
+                    text: {
+                        console.log("inputIrFrequency::text", CircuitComponentSolver.frequencyIr)
+                        return CircuitComponentSolver.frequencyIr
+                    }
+
                     onEditingFinished: {
                         CircuitComponentSolver.frequencyIr = inputIrFrequency.text
+                    }
+
+                    onIncrease: {
+                        CircuitComponentSolver.frequencyIr += 1
+                    }
+                    onDecrease: {
+                        if(CircuitComponentSolver.frequencyIr > 0)
+                            CircuitComponentSolver.frequencyIr -= 1
                     }
                 }
 
                 MyStyledLabel {
                     id: lblIrResult
                     text: CircuitComponentSolver.resultIr
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
-
-                MyStyledButton {
-                    id: btnLrCalc
-                    text: qsTr("Calculate")
-
-                    onClicked: {
-                        CircuitComponentSolver.createIrResult()
-                    }
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 }

@@ -3,50 +3,49 @@
 CircuitComponentSolver::CircuitComponentSolver(QObject *parent)
     : QObject{parent}
 {
-    m_resistors = new std::deque<float>();
+
 }
 
 CircuitComponentSolver::~CircuitComponentSolver()
 {
-    delete m_resistors;
+
 }
 
 void CircuitComponentSolver::removeLastResistorValue()
 {
-    if (!m_resistors->empty())
+    if (!m_resistors.empty())
     {
-        m_resistors->pop_back();
+        m_resistors.pop_back();
     }
 
     QString dataString = createDataResistorsString();
 
     setDataResistors(dataString);
 
-    qDebug() << "removeLastResistorValue::Resistors count" << m_resistors->size();
+    recalculateResult();
+
+    qDebug() << "removeLastResistorValue::Resistors count" << m_resistors.size();
 }
 
 void CircuitComponentSolver::clearResistorsData()
 {
-    m_resistors->clear();
+    m_resistors.clear();
 
     QString dataString = createDataResistorsString();
 
     setDataResistors(dataString);
 
-    qDebug() << "clearResistorsData::Resistors count" << m_resistors->size();
+    qDebug() << "clearResistorsData::Resistors count" << m_resistors.size();
 }
 
-void CircuitComponentSolver::calculateResistance(int type)
+void CircuitComponentSolver::calculateResistance(bool is_parallel)
 {
     QString result = "Result: ";
 
-    if (type == 0)
-    {
-        result += calculateSeriesResistance();
-    }
-    else
-    {
+    if (is_parallel){
         result += calculateParallelResistance();
+    } else {
+        result += calculateSeriesResistance();
     }
 
     setResultResistors(result);
@@ -54,14 +53,14 @@ void CircuitComponentSolver::calculateResistance(int type)
 
 QString CircuitComponentSolver::createDataResistorsString()
 {
-    if (m_resistors->empty())
+    if (m_resistors.empty())
     {
         return "Data: no data";
     }
 
     QString dataStr = "Data: ";
 
-    for (float value: *m_resistors) {
+    for (const auto &value: m_resistors) {
         dataStr += QString("%1, ").arg(value, 0, 'f', 5);
     }
 
@@ -72,14 +71,14 @@ QString CircuitComponentSolver::createDataResistorsString()
 
 QString CircuitComponentSolver::calculateSeriesResistance()
 {
-    if (m_resistors->empty())
+    if (m_resistors.empty())
     {
         return "no data";
     }
 
     float total_resistance = 0;
 
-    for (float value: *m_resistors) {
+    for (const auto &value: m_resistors) {
         total_resistance += value;
     }
 
@@ -88,14 +87,14 @@ QString CircuitComponentSolver::calculateSeriesResistance()
 
 QString CircuitComponentSolver::calculateParallelResistance()
 {
-    if (m_resistors->empty())
+    if (m_resistors.empty())
     {
         return "no data";
     }
 
     float total_resistance = 0;
 
-    for (float value: *m_resistors) {
+    for (const auto &value: m_resistors) {
         total_resistance += 1/value;
     }
 
@@ -106,16 +105,31 @@ QString CircuitComponentSolver::calculateParallelResistance()
 
 QString CircuitComponentSolver::calculateCRImpedance()
 {
-    float imaginary = 1 / (2 * M_PI * m_frequency * m_capacitor);
+    float imaginary = 1 / (2 * M_PI * m_frequencyCr * m_capasitorCr * m_capasitorMultiplier);
 
-    return QString("%1 + j%2 Ω").arg(m_resistor, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
+    return QString("%1 + j%2 Ω").arg(m_resistorCr, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
 }
 
 QString CircuitComponentSolver::calculateIRImpedance()
 {
-    float imaginary = 2 * M_PI * m_frequency * m_inductor;
+    float imaginary = 2 * M_PI * m_frequencyIr * m_inductorIr * m_inductorMultiplier;
 
-    return QString("%1 + j%2 Ω").arg(m_resistor, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
+    return QString("%1 + j%2 Ω").arg(m_resistorIr, 0, 'f', 5).arg(imaginary, 0, 'f', 5);
+}
+
+bool CircuitComponentSolver::isParallel() const
+{
+    return m_isParallel;
+}
+
+void CircuitComponentSolver::setIsParallel(bool newIsParallel)
+{
+    if (m_isParallel == newIsParallel)
+        return;
+    m_isParallel = newIsParallel;
+    emit isParallelChanged();
+
+    recalculateResult();
 }
 
 float CircuitComponentSolver::resistorValue() const
@@ -141,26 +155,25 @@ QString CircuitComponentSolver::result() const
     return m_resultResistors;
 }
 
-void CircuitComponentSolver::setResistorValue(const float &newResistorValue)
+void CircuitComponentSolver::setResistorValue(float newResistorValue)
 {
-    if (qIsNaN(newResistorValue))
-    {
-        m_resistor = -1; // wrong input
+    if (m_resistorValue == newResistorValue)
         return;
-    }
 
-    if (m_resistor == newResistorValue)
-        return;
-    m_resistor = newResistorValue;
+    m_resistorValue = newResistorValue;
 
     emit resistorValueChanged();
+
+    addNewResistor();
+
+    recalculateResult();
 }
 
 void CircuitComponentSolver::addNewResistor()
 {
-    if (m_resistor > 0)
+    if (m_resistorValue > 0)
     {
-        m_resistors->push_back(m_resistor);
+        m_resistors.push_back(m_resistorValue);
 
         QString dataString = createDataResistorsString();
 
@@ -186,16 +199,18 @@ void CircuitComponentSolver::setResistorCr(const float &newResistorCr)
     if (qIsNaN(newResistorCr))
         return;
 
-    if (m_resistor == newResistorCr)
+    if (m_resistorCr == newResistorCr)
         return;
-    m_resistor = newResistorCr;
+    m_resistorCr = newResistorCr;
 
     if (newResistorCr > 0)
     {
-        m_resistor = newResistorCr;
+        m_resistorCr = newResistorCr;
     }
 
     emit resistorCrChanged();
+
+    recalculateResult();
 }
 
 float CircuitComponentSolver::capasitorCr() const
@@ -208,16 +223,33 @@ void CircuitComponentSolver::setCapasitorCr(const float &newCapasitorCr)
     if (qIsNaN(newCapasitorCr))
         return;
 
-    if (m_capacitor == newCapasitorCr)
+    if (m_capasitorCr == newCapasitorCr)
         return;
-    m_capacitor = newCapasitorCr;
+    m_capasitorCr = newCapasitorCr;
 
     if (newCapasitorCr > 0)
     {
-        m_capacitor = newCapasitorCr;
+        m_capasitorCr = newCapasitorCr;
     }
 
     emit capasitorCrChanged();
+
+    recalculateResult();
+}
+
+float CircuitComponentSolver::capasitorMultiplier() const
+{
+    return m_capasitorMultiplier;
+}
+
+void CircuitComponentSolver::setCapasitorMultiplier(float newCapasitorMultiplier)
+{
+    if (m_capasitorMultiplier == newCapasitorMultiplier)
+        return;
+    m_capasitorMultiplier = newCapasitorMultiplier;
+    emit capasitorMultiplierChanged();
+
+    recalculateResult();
 }
 
 float CircuitComponentSolver::frequencyCr() const
@@ -230,16 +262,13 @@ void CircuitComponentSolver::setFrequencyCr(const float &newFrequencyCr)
     if (qIsNaN(newFrequencyCr))
         return;
 
-    if (m_frequency == newFrequencyCr)
+    if (m_frequencyCr == newFrequencyCr)
         return;
-    m_frequency = newFrequencyCr;
-
-    if (newFrequencyCr > 0)
-    {
-        m_frequency = newFrequencyCr;
-    }
+    m_frequencyCr = newFrequencyCr;
 
     emit frequencyCrChanged();
+
+    recalculateResult();
 }
 
 QString CircuitComponentSolver::resultCr() const
@@ -253,13 +282,15 @@ void CircuitComponentSolver::setResultCr(const QString &newResultCr)
         return;
     m_resultCr = newResultCr;
     emit resultCrChanged();
+
+    recalculateResult();
 }
 
-void CircuitComponentSolver::createCrResult()
+void CircuitComponentSolver::calculateCrResult()
 {
     QString result = "Result Impedance: ";
 
-    if (m_resistor && m_capacitor && m_frequency)
+    if (m_resistorCr && m_capasitorCr && m_frequencyCr)
     {
         result += calculateCRImpedance();
     }
@@ -281,16 +312,18 @@ void CircuitComponentSolver::setResistorIr(const float &newResistorIr)
     if (qIsNaN(newResistorIr))
         return;
 
-    if (m_resistor == newResistorIr)
+    if (m_resistorIr == newResistorIr)
         return;
-    m_resistor = newResistorIr;
+    m_resistorIr = newResistorIr;
 
     if (newResistorIr > 0)
     {
-        m_resistor = newResistorIr;
+        m_resistorIr = newResistorIr;
     }
 
     emit resistorIrChanged();
+
+    recalculateResult();
 }
 
 float CircuitComponentSolver::inductorIr() const
@@ -303,16 +336,33 @@ void CircuitComponentSolver::setInductorIr(const float &newInductorIr)
     if (qIsNaN(newInductorIr))
         return;
 
-    if (m_inductor == newInductorIr)
+    if (m_inductorIr == newInductorIr)
         return;
-    m_inductor = newInductorIr;
+    m_inductorIr = newInductorIr;
 
     if (newInductorIr > 0)
     {
-        m_inductor = newInductorIr;
+        m_inductorIr = newInductorIr;
     }
 
     emit inductorIrChanged();
+
+    recalculateResult();
+}
+
+float CircuitComponentSolver::inductorMultiplier() const
+{
+    return m_inductorMultiplier;
+}
+
+void CircuitComponentSolver::setInductorMultiplier(float newInductorMultiplier)
+{
+    if (m_inductorMultiplier == newInductorMultiplier)
+        return;
+    m_inductorMultiplier = newInductorMultiplier;
+    emit inductorMultiplierChanged();
+
+    recalculateResult();
 }
 
 float CircuitComponentSolver::frequencyIr() const
@@ -325,16 +375,18 @@ void CircuitComponentSolver::setFrequencyIr(const float &newFrequencyIr)
     if (qIsNaN(newFrequencyIr))
         return;
 
-    if (m_frequency == newFrequencyIr)
+    if (m_frequencyIr == newFrequencyIr)
         return;
-    m_frequency = newFrequencyIr;
+    m_frequencyIr = newFrequencyIr;
 
     if (newFrequencyIr > 0)
     {
-        m_frequency = newFrequencyIr;
+        m_frequencyIr = newFrequencyIr;
     }
 
     emit frequencyIrChanged();
+
+    recalculateResult();
 }
 
 QString CircuitComponentSolver::resultIr() const
@@ -354,7 +406,7 @@ void CircuitComponentSolver::createIrResult()
 {
     QString result = "Result Impedance: ";
 
-    if (m_resistor && m_inductor && m_frequency)
+    if (m_resistorIr && m_inductorIr && m_frequencyIr)
     {
         result += calculateIRImpedance();
     }
@@ -364,4 +416,34 @@ void CircuitComponentSolver::createIrResult()
     }
 
     setResultIr(result);
+}
+
+void CircuitComponentSolver::setCurrentTapIndex(int val)
+{
+    if(m_currentTapIndex == val)
+        return;
+
+    m_currentTapIndex = val;
+    emit currentTapIndexChanged();
+}
+
+void CircuitComponentSolver::recalculateResult()
+{
+    qInfo() << "CircuitComponentSolver::recalculateResult for" << m_currentTapIndex;
+
+    switch (m_currentTapIndex) {
+    case 0:
+        calculateResistance(m_isParallel);
+        return;
+    case 1:
+        calculateCrResult();
+        return;
+    case 2:
+        createIrResult();
+        return;
+    }
+
+    qWarning() << "CircuitComponentSolver::recalculateResult value" << m_currentTapIndex << "not handled in switch";
+
+    Q_UNREACHABLE();
 }
