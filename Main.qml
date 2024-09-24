@@ -10,9 +10,11 @@ Window {
     height: 480
     visible: true
     title: qsTr("Resonant Cacl")
+    // change 1
 
     minimumWidth: 400
     minimumHeight: 450
+    // change 2
 
     property var multiplier_model: [
         {text: qsTr("µ (micro)"), value: 1E-6},
@@ -24,6 +26,7 @@ Window {
     TabBar {
         id: bar
         width: parent.width
+        // target
 
         TabButton {
             text: qsTr("Resistor Mode")
